@@ -1,0 +1,13 @@
+﻿{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature",
+      "properties": {"poi_id": "GC", "name": "FIU Graham Center"},
+      "geometry": {"type": "Point", "coordinates": [-80.3760, 25.7560]}
+    },
+    { "type": "Feature",
+      "properties": {"poi_id": "PG5", "name": "PG5 Market Station"},
+      "geometry": {"type": "Point", "coordinates": [-80.3725, 25.7585]}
+    }
+  ]
+}

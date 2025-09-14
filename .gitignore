@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.env
+.env.*
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / Editors
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Data & Outputs (keep sample small files if needed)
+data/*.csv
+out/*.csv
+out/*.parquet
+*.log
+
+# Allow small samples
+!data/pois.geojson
+!data/README.md
