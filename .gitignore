@@ -24,3 +24,6 @@ out/*.parquet
 # Allow small samples
 !data/pois.geojson
 !data/README.md
+
+# Large files
+data/*.graphml
