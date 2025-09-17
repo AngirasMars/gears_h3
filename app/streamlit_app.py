@@ -174,18 +174,33 @@ poly_features = [
     pf for pf in poly_features
     if isinstance(pf.get("polygon"), list)
     and len(pf["polygon"]) >= 3
-    and all(isinstance(pt, list) and len(pt) == 2 and pd.notna(pt[0]) and pd.notna(pt[1]) for pt in pf["polygon"])
+    and all(
+        isinstance(pt, list) and len(pt) == 2 and pd.notna(pt[0]) and pd.notna(pt[1])
+        for pt in pf["polygon"]
+    )
 ]
 
-poly_layer = pdk.Layer(
-    "PolygonLayer",
-    data=poly_features,
-    get_polygon="polygon",
-    get_fill_color=[200, 0, 0, 60],
-    get_line_color=[200, 0, 0, 170],
-    line_width_min_pixels=2,
-    pickable=True,
-)
+# ✅ guard against empty list (deck.gl expects at least a valid schema)
+if len(poly_features) > 0:
+    poly_layer = pdk.Layer(
+        "PolygonLayer",
+        data=poly_features,
+        get_polygon="polygon",
+        get_fill_color=[200, 0, 0, 60],
+        get_line_color=[200, 0, 0, 170],
+        line_width_min_pixels=2,
+        pickable=True,
+    )
+else:
+    poly_layer = pdk.Layer(
+        "PolygonLayer",
+        data=pd.DataFrame(columns=["polygon", "poi_id", "name"]),
+        get_polygon="polygon",
+        get_fill_color=[200, 0, 0, 60],
+        get_line_color=[200, 0, 0, 170],
+        line_width_min_pixels=2,
+        pickable=True,
+    )
 
 # ===========================
 #   EVENTS (up to current time)
